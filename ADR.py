@@ -1,7 +1,7 @@
 # Created by Gaurav Shankar --github : <gauravsh02.github.io> -- emailid : <gauravshankar.bk@gmail.com>
 # This is a Python script to arrange your video songs into directories according to Band name
 # If the songs are in format BAND_NAME - SONG_NAME --- .mp4 OR .MKV
-# Directrioes will be created according to BAND name and files will me moved accordingly
+# Directories will be created according to BAND name and files will me moved accordingly
 # Further changes will be made to provide more flexibility
 
 import os, shutil
@@ -31,7 +31,7 @@ for di in vlist:
     if not os.path.exists(di):
         os.makedirs(di)
         for song in slist:
-            if find(di):
+            if song.startswith(di):
                 dsst = di+"/"+song
                 shutil.move(song, dsst)
 
