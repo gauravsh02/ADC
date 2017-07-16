@@ -11,6 +11,10 @@ flist = os.listdir()
 vlist = []
 slist=[]
 
+def mov(source, di):
+    dsst = di+"/"+source
+    shutil.move(source, dsst)
+
 for i in flist:
     if(i[len(i)-3:]=="MKV" or i[len(i)-3:]=="mp4"):
         slist.append(i)
@@ -28,11 +32,15 @@ for i in flist:
 vlist = set(vlist)
 
 for di in vlist:
-    if not os.path.exists(di):
+    if os.path.exists(di):
+        for song in slist:
+            if song.startswith(di):
+                mov(song, di)
+    else:
         os.makedirs(di)
         for song in slist:
             if song.startswith(di):
-                dsst = di+"/"+song
-                shutil.move(song, dsst)
+                mov(song, di)
+
 
 print("Done")
